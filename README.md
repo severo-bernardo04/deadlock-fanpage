@@ -52,17 +52,6 @@ This project was developed as a front-end practice and portfolio piece, focusing
 
 ## 🚀 How to Run
 
-This project is deployed using **GitHub Pages** with **GitHub Actions**.
-
-To run locally:
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/your-username/deadlock-fanpage.git
-   ```
-2. Open the `index.html` file in your browser
-
 ---
 
 ## 📌 Project Status
