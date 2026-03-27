@@ -1,0 +1,375 @@
+/* Página de personagens — fundo full-screen; texto flutuando à direita; vídeo no canto inferior direito do conteúdo */
+
+body.characters-page {
+    /* Base da página. */
+    background: #070707;
+    min-height: 100vh;
+}
+
+/* Fundo do personagem (atualizado pelo JS). */
+.page-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-color: #070707;
+    background-size: cover;
+    background-position: 58% 20%;
+    background-repeat: no-repeat;
+    filter: saturate(1.06) contrast(1.04);
+}
+
+/* Camada escura para dar contraste no texto. */
+.page-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+        linear-gradient(95deg, rgba(4, 5, 6, 0.88) 0%, rgba(6, 8, 10, 0.5) 42%, rgba(5, 6, 8, 0.45) 100%),
+        radial-gradient(ellipse 90% 80% at 70% 35%, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+/* Garante que header/main/footer ficam acima do fundo. */
+body.characters-page > header {
+    position: relative;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(8px);
+}
+
+body.characters-page > main {
+    position: relative;
+    z-index: 2;
+}
+
+body.characters-page > footer {
+    position: relative;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.82);
+    backdrop-filter: blur(6px);
+}
+
+nav a[aria-current="page"] {
+    color: var(--gold-light);
+    border-color: var(--gold);
+}
+
+.characters-main {
+    /* Container do conteúdo. */
+    width: min(1200px, 94%);
+    margin: 1.75rem auto 0;
+    padding: 0 0.25rem clamp(3.5rem, 12vh, 7rem);
+}
+
+.characters-page-title {
+    color: var(--gold-light);
+    font-size: clamp(1.35rem, 3vw, 1.75rem);
+    margin-bottom: 0.35rem;
+}
+
+.characters-page-intro {
+    color: #c8c8c8;
+    font-size: 0.95rem;
+    margin-bottom: clamp(1.5rem, 4vh, 2.25rem);
+    line-height: 1.45;
+}
+
+.characters-layout {
+    /* Layout em duas colunas. */
+    display: grid;
+    grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+    gap: clamp(1.25rem, 3.5vw, 2.5rem);
+    align-items: stretch;
+    min-height: min(92vh, 900px);
+}
+
+/* Coluna direita: texto no topo à direita; vídeo logo abaixo das características */
+.characters-right {
+    /* Coluna da direita. */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: clamp(0.65rem, 1.8vh, 1rem);
+    min-height: min(88vh, 820px);
+    padding-bottom: clamp(1.5rem, 3vh, 3.25rem);
+}
+
+/* Esquerda: só retratos “flutuantes”, sem caixa nem título */
+.select-hero-panel {
+    background: transparent;
+    border: none;
+    padding: 0.35rem 0.25rem clamp(2rem, 5vh, 3.5rem);
+    position: sticky;
+    top: 0.75rem;
+    align-self: start;
+}
+
+.character-select-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(12px, 2.5vw, 18px);
+    width: 100%;
+    max-width: 400px;
+    align-content: start;
+    padding-bottom: clamp(1rem, 3vh, 2rem);
+}
+
+.character-grid-btn {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 8px;
+    background: #0a0c0e;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.55),
+        0 4px 10px rgba(0, 0, 0, 0.35),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+.character-grid-btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.6),
+        0 8px 16px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px rgba(212, 164, 51, 0.35);
+    z-index: 1;
+}
+
+.character-grid-btn[aria-pressed="true"] {
+    transform: translateY(-2px);
+    box-shadow:
+        0 0 0 2px rgba(245, 248, 252, 0.95),
+        0 16px 36px rgba(0, 0, 0, 0.55),
+        0 0 28px rgba(200, 210, 230, 0.12);
+    z-index: 2;
+}
+
+.character-grid-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* mantém o card inteiro e centraliza */
+    object-position: center;
+    display: block;
+    pointer-events: none;
+}
+
+.select-back {
+    display: inline-block;
+    margin-top: 0.85rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(180, 185, 175, 0.85);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.select-back:hover {
+    color: var(--gold-light);
+    border-color: var(--gold-dark);
+}
+
+/* Texto “flutuando”: sem caixa, alinhado à direita */
+.character-panel {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+
+.character-text {
+    max-width: min(28rem, 100%);
+    margin-left: auto;
+    text-align: right;
+}
+
+.detail-name {
+    color: #f0ebe3;
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 3px 24px rgba(0, 0, 0, 0.85);
+}
+
+.detail-traits-title,
+.video-title {
+    color: var(--gold-light);
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.75);
+}
+
+.detail-traits {
+    margin: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    margin-bottom: 0.35rem;
+}
+
+.trait-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid rgba(212, 164, 51, 0.22);
+    background: rgba(0, 0, 0, 0.28);
+    color: #f0e6d2;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    font-size: clamp(0.95rem, 1.3vw, 1.2rem);
+    text-shadow: 0 1px 14px rgba(0, 0, 0, 0.7);
+    white-space: nowrap; /* evita "Map" e "Control" ficarem em linhas separadas */
+    line-height: 1.1;
+}
+
+.character-video-dock {
+    /* Área do vídeo. */
+    flex-shrink: 0;
+    width: min(380px, 100%);
+    align-self: flex-end;
+    margin: 0;
+    margin-top: 0.05rem;
+    padding: 0;
+    border: none;
+    background: none;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+
+.character-video-dock .video-title {
+    margin-bottom: 0.35rem;
+    font-size: 0.88rem;
+    text-align: right;
+}
+
+.video-shell {
+    /* Moldura do vídeo (16/9). */
+    position: relative;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(0, 0, 0, 0.5);
+    aspect-ratio: 16 / 9;
+}
+
+/* Vídeo e placeholder ocupam o mesmo espaço. */
+.detail-video,
+.video-placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.video-placeholder {
+    /* Texto quando não existe vídeo. */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    text-align: center;
+    color: #bbb;
+    font-size: 0.95rem;
+    line-height: 1.45;
+}
+
+.video-placeholder a {
+    color: var(--gold);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.video-placeholder a:hover {
+    color: var(--gold-light);
+    border-color: var(--gold);
+}
+
+@media (max-width: 900px) {
+    .characters-layout {
+        grid-template-columns: 1fr;
+        min-height: 0;
+    }
+
+    .select-hero-panel {
+        position: static;
+    }
+
+    .character-select-grid {
+        max-width: none;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .characters-right {
+        min-height: min(62vh, 520px);
+        align-items: stretch;
+        justify-content: flex-end;
+        padding-bottom: clamp(1.25rem, 3vh, 2.25rem);
+    }
+
+    .character-panel {
+        align-items: flex-start;
+    }
+
+    .character-text {
+        text-align: left;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .detail-traits dt,
+    .detail-traits dd {
+        text-align: left;
+    }
+
+    .detail-traits {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 0.5rem;
+    }
+
+    .character-video-dock {
+        width: 100%;
+        align-self: stretch;
+    }
+
+    .character-video-dock .video-title {
+        text-align: left;
+    }
+}
+
+@media (min-width: 1100px) {
+    .character-select-grid {
+        grid-template-columns: repeat(3, minmax(0, 112px));
+        justify-content: start;
+    }
+}

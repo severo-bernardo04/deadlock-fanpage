@@ -1,0 +1,567 @@
+:root {
+    --bg-main: #070707;
+    --bg-surface: #121212;
+    --gold-dark: #8a6e12;
+    --gold: #b48b1f;
+    --gold-light: #d0a433;
+    --text-main: #f2f2f2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    /* Layout base da página. */
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(180deg, #000 0%, var(--bg-main) 100%);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    /* Área principal do conteúdo. */
+    flex: 1;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: #000;
+    border-bottom: 2px solid var(--gold-dark);
+}
+
+header > div {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+header img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    display: block;
+}
+
+header h1 {
+    color: var(--gold-light);
+    font-size: 1.65rem;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.1rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 600;
+    padding: 0.35rem 0.25rem;
+    border-bottom: 2px solid transparent;
+    transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+nav a:hover {
+    color: var(--gold-light);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+}
+
+section:not(.home-hero) {
+    width: min(1100px, 92%);
+    margin: 1.6rem auto;
+}
+
+.game-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.25rem;
+}
+
+.game-info > div {
+    background: var(--bg-surface);
+    border: 1px solid #2a2a2a;
+    border-left: 4px solid var(--gold-dark);
+    border-radius: 10px;
+    padding: 1.15rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.game-info > div:hover {
+    transform: translateY(-4px);
+    border-color: #3b3b3b;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.game-info h1,
+.game-info h2,
+.game-info h3 {
+    color: var(--gold-light);
+    margin: 0 0 0.5rem 0;
+}
+
+.game-info p {
+    color: #ddd;
+    line-height: 1.45;
+    margin: 0;
+    text-align: center;
+}
+
+.game-info h3 {
+    margin-top: 0.35rem; /* espaçamento confortável sem “puxar” o card demais */
+}
+
+/* Hero: carrossel em JS, largura total abaixo do header */
+.home-hero {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.hero-carousel {
+    position: relative;
+    width: 100%;
+    min-height: min(72vh, 820px);
+    max-height: 85vh;
+    overflow: hidden;
+    border-bottom: 2px solid var(--gold-dark);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+.hero-slides {
+    position: absolute;
+    inset: 0;
+}
+
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.65s ease;
+    pointer-events: none;
+}
+
+.hero-slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    padding-bottom: clamp(4rem, 12vh, 6rem);
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.15) 0%,
+        rgba(0, 0, 0, 0.55) 55%,
+        rgba(0, 0, 0, 0.82) 100%
+    );
+    pointer-events: none;
+}
+
+.hero-overlay .hero-cta {
+    pointer-events: auto;
+}
+
+.hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.35rem;
+}
+
+.hero-title {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    color: var(--gold-light);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.35rem;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.7);
+}
+
+.hero-tagline {
+    max-width: 36rem;
+    color: #eaeaea;
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    line-height: 1.45;
+    margin-bottom: 1rem;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+}
+
+.hero-cta {
+    display: inline-block;
+    text-decoration: none;
+    color: #111;
+    background: var(--gold);
+    padding: 0.7rem 1.35rem;
+    border-radius: 8px;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hero-cta:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+}
+
+.hero-controls {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.65rem 1rem 1rem;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.75) 0%, transparent 100%);
+}
+
+.hero-prev,
+.hero-next {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid rgba(212, 164, 51, 0.45);
+    background: rgba(10, 10, 10, 0.65);
+    color: var(--gold-light);
+    font-size: 1.35rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.hero-prev:hover,
+.hero-next:hover {
+    background: rgba(30, 30, 30, 0.9);
+    border-color: var(--gold);
+    transform: scale(1.05);
+}
+
+.hero-dots {
+    display: flex;
+    gap: 0.45rem;
+    align-items: center;
+}
+
+.hero-dots .hero-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.hero-dots .hero-dot:hover {
+    border-color: var(--gold);
+}
+
+.hero-dots .hero-dot.active {
+    background: var(--gold);
+    border-color: var(--gold-light);
+    transform: scale(1.15);
+}
+
+.new-characters {
+    width: min(1400px, 96%);
+    margin: 2rem auto 1.2rem;
+}
+
+.section-title {
+    margin-bottom: 1rem;
+}
+
+.section-title h2 {
+    color: var(--gold-light);
+    margin-bottom: 0;
+}
+
+.section-title p {
+    color: #d2d2d2;
+    margin-bottom: 1rem;
+}
+
+.character-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: stretch;
+}
+
+/* index: queremos cards maiores no destaque (6 cards = 2 linhas) */
+.new-characters .character-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.new-characters .character-card-media {
+    aspect-ratio: 5 / 4;
+}
+
+
+.character-card {
+    background: var(--bg-surface);
+    border: 1px solid #2a2a2a;
+    border-top: 4px solid var(--gold-dark);
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.character-card:hover {
+    transform: translateY(-5px);
+    border-color: #3d3d3d;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.character-card-media {
+    aspect-ratio: 4 / 3;
+    background: #0a0a0a;
+    border-bottom: 2px solid var(--gold-dark);
+    overflow: hidden;
+}
+
+.character-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.character-card:hover .character-card-media img {
+    transform: scale(1.04);
+}
+
+.character-card h3 {
+    color: var(--gold-light);
+    margin: 0.85rem 1rem 0.5rem;
+    font-size: 1.15rem;
+}
+
+.character-traits {
+    margin: 0 1rem 0.75rem;
+    flex: 1;
+}
+
+.character-traits .trait-row {
+    margin-bottom: 0.55rem;
+}
+
+.character-traits .trait-row:last-child {
+    margin-bottom: 0;
+}
+
+.character-traits dt {
+    color: var(--gold);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.15rem;
+}
+
+.character-traits dd {
+    color: #dadada;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0;
+    padding-left: 0;
+}
+
+.character-card > a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 700;
+    padding: 0 1rem 1rem;
+    margin-top: auto;
+    display: inline-block;
+}
+
+.character-card > a:hover {
+    color: var(--gold-light);
+}
+
+.steam-cta {
+    /* Área do botão do Steam. */
+    width: min(1100px, 92%);
+    margin: 2rem auto 3.25rem;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Na home, deixa só o botão. */
+.steam-cta--button-only h2,
+.steam-cta--button-only p {
+    display: none; /* título/descrição removidos; fica só o botão */
+}
+
+.steam-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #111;
+    background: linear-gradient(120deg, var(--gold) 0%, var(--gold-light) 100%);
+    padding: 1rem 2.25rem;
+    border-radius: 16px;
+    font-weight: 700;
+    border: 1px solid rgba(212, 164, 51, 0.45);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    font-size: clamp(1.15rem, 2.6vw, 1.65rem);
+    transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.steam-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 22px 55px rgba(0, 0, 0, 0.55);
+    filter: brightness(1.05);
+}
+
+footer {
+    /* Rodapé. */
+    margin-top: auto;
+    background: #000;
+    border-top: 2px solid var(--gold-dark);
+}
+
+.footer-content {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+    padding: 1.4rem 0.5rem 1.2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.footer-brand h3 {
+    color: var(--gold-light);
+    margin-bottom: 0.4rem;
+}
+
+.footer-brand p,
+.footer-contact p {
+    color: #d6d6d6;
+    line-height: 1.45;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1rem;
+    align-content: flex-start;
+}
+
+.footer-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.footer-links a:hover {
+    color: var(--gold-light);
+    border-color: var(--gold);
+}
+
+.footer-bottom {
+    border-top: 1px solid #242424;
+    text-align: center;
+    padding: 0.8rem 1rem 1rem;
+}
+
+.footer-bottom p {
+    color: #bfbfbf;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 1300px) {
+    .character-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1024px) {
+    .character-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 800px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+
+    nav ul {
+        justify-content: flex-start;
+        gap: 0.8rem;
+    }
+
+    .hero-carousel {
+        min-height: min(58vh, 520px);
+        max-height: 78vh;
+    }
+
+    .footer-content {
+        padding-top: 1.2rem;
+        gap: 0.8rem;
+    }
+
+    .steam-cta {
+        padding: 1.1rem;
+    }
+
+    .character-grid {
+        grid-template-columns: 1fr;
+    }
+}

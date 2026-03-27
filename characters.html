@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Characters — Deadlock Site</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="characters.css">
+</head>
+<body class="characters-page">
+
+<div class="page-bg" id="page-bg" aria-hidden="true"></div>
+<div class="page-scrim" aria-hidden="true"></div>
+
+<header>
+  <div>
+    <img src="DeadlockLogo.png" alt="Deadlock">
+    <h1>Deadlock</h1>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Patches.html">Patches</a></li>
+      <li><a href="characters.html" aria-current="page">Characters</a></li>
+      <li><a href="mechanics.html">Mechanics</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="characters-main">
+
+  <div class="characters-layout">
+    <aside class="select-hero-panel" aria-label="Character selection">
+      <div class="character-select-grid" id="character-nav" role="group" aria-label="Character grid"></div>
+      <a class="select-back" href="index.html">← Back to site</a>
+    </aside>
+
+    <div class="characters-right">
+      <section class="character-panel" id="character-panel" aria-live="polite" aria-atomic="true">
+        <div class="character-text">
+          <h3 class="detail-name" id="detail-name"></h3>
+          <div class="detail-traits" id="detail-traits" role="list" aria-label="Characteristics"></div>
+        </div>
+      </section>
+
+      <div class="character-video-dock" id="character-video-dock">
+        <h4 class="video-title">Abilities in video</h4>
+        <div class="video-shell" id="video-shell">
+          <div class="video-placeholder" id="video-placeholder" hidden></div>
+          <iframe
+            id="detail-video"
+            class="detail-video"
+            title="Character abilities video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            hidden></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-brand">
+      <h3>Deadlock Fan Site</h3>
+      <p>Created by: Bernardo Acosta Severo</p>
+    </div>
+
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="Patches.html">Patches</a>
+      <a href="characters.html">Characters</a>
+      <a href="mechanics.html">Mechanics</a>
+    </div>
+
+    <div class="footer-contact">
+      <p>Web development study project.</p>
+      <p>Content inspired by the Deadlock universe.</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 Deadlock Fan Site. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="characters.js" defer></script>
+</body>
+</html>

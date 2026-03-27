@@ -1,0 +1,236 @@
+/* Mechanics page: menu à esquerda + painel de detalhes */
+
+body.mechanics-page {
+  /* Base da página. */
+  min-height: 100vh;
+}
+
+.mechanics-main {
+  /* Container do conteúdo. */
+  width: min(1100px, 92%);
+  margin: 1.75rem auto 2.25rem;
+  padding: 0 0.25rem;
+}
+
+.mechanics-hero {
+  margin-bottom: 1.25rem;
+}
+
+.mechanics-title {
+  color: var(--gold-light);
+  font-size: clamp(1.5rem, 3.2vw, 2rem);
+  margin-bottom: 0.5rem;
+}
+
+.mechanics-lead {
+  color: #c8c8c8;
+  line-height: 1.55;
+  max-width: 60rem;
+}
+
+.mechanics-layout {
+  /* Layout em duas colunas. */
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.mechanics-nav {
+  /* Menu lateral. */
+  background: var(--bg-surface);
+  border: 1px solid #2a2a2a;
+  border-left: 4px solid var(--gold-dark);
+  border-radius: 12px;
+  padding: 0.9rem 0.75rem;
+  position: sticky;
+  top: 1rem;
+}
+
+.mechanics-nav-top {
+  margin-bottom: 0.75rem;
+}
+
+.mechanics-nav-label {
+  color: var(--gold);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.mechanics-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.mechanic-nav-btn {
+  width: 100%;
+  text-align: left;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-main);
+  padding: 0.7rem 0.65rem;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  font-weight: 700;
+}
+
+.mechanic-nav-btn:hover {
+  border-color: #3a3a3a;
+  background: rgba(180, 139, 31, 0.12);
+  transform: translateY(-1px);
+}
+
+.mechanic-nav-btn[aria-pressed="true"] {
+  border-color: var(--gold-dark);
+  background: rgba(180, 139, 31, 0.20);
+}
+
+.mechanic-nav-ic {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(212, 164, 51, 0.35);
+  color: var(--gold-light);
+  font-size: 1rem;
+  flex: 0 0 auto;
+}
+
+.mechanics-detail {
+  padding-top: 0;
+}
+
+.mechanics-detail-card {
+  background: var(--bg-surface);
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  border-left: 5px solid var(--gold-dark);
+  padding: 1.25rem 1.25rem 1.35rem;
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.25);
+}
+
+.mechanics-detail-eyebrow {
+  color: var(--gold);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+
+.mechanics-detail-title {
+  color: var(--gold-light);
+  font-size: clamp(1.35rem, 3vw, 1.9rem);
+  margin-bottom: 0.6rem;
+}
+
+.mechanics-detail-description {
+  color: #ddd;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.mechanics-detail-subtitle {
+  color: var(--gold-light);
+  margin-bottom: 0.6rem;
+}
+
+.mechanics-detail-bullets {
+  margin: 0;
+  padding-left: 1.35rem;
+}
+
+.mechanics-detail-bullets li {
+  margin-bottom: 0.55rem;
+  color: #ddd;
+  line-height: 1.5;
+}
+
+.mechanics-video-dock {
+  /* Área do vídeo. */
+  margin-top: 1.15rem;
+}
+
+.mechanics-video-title {
+  /* Título do vídeo. */
+  color: var(--gold-light);
+  font-size: 0.95rem;
+  margin-bottom: 0.45rem;
+}
+
+.mechanics-video-shell {
+  /* Moldura do vídeo (16/9). */
+  position: relative;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.5);
+  aspect-ratio: 16 / 9;
+}
+
+.mechanics-detail-video {
+  /* Vídeo ocupa todo o espaço. */
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+
+.mechanics-video-placeholder {
+  /* Texto quando não existe vídeo. */
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+  color: #bdbdbd;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.mechanics-video-placeholder code {
+  color: var(--gold-light);
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(212, 164, 51, 0.25);
+  padding: 0.1rem 0.35rem;
+  border-radius: 6px;
+}
+
+.mechanics-detail-hint {
+  margin-top: 0.85rem;
+  color: #a9a9a9;
+  font-size: 0.9rem;
+}
+
+.mechanics-detail-hint code {
+  color: var(--gold-light);
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(212, 164, 51, 0.25);
+  padding: 0.1rem 0.35rem;
+  border-radius: 6px;
+}
+
+@media (max-width: 900px) {
+  .mechanics-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .mechanics-nav {
+    position: static;
+  }
+}
+

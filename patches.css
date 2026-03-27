@@ -1,0 +1,174 @@
+/* Página Patches — alinhada ao visual da home (index.css) */
+
+body.patches-page {
+    /* Fundo da página. */
+    background: linear-gradient(180deg, #000 0%, var(--bg-main) 100%);
+}
+
+nav a[aria-current="page"] {
+    color: var(--gold-light);
+    border-color: var(--gold);
+}
+
+.patches-intro {
+    width: min(1100px, 92%);
+    margin: 1.75rem auto 1rem;
+}
+
+.patches-page-title {
+    color: var(--gold-light);
+    font-size: clamp(1.5rem, 3.2vw, 2rem);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+}
+
+.patches-page-lead {
+    color: #c8c8c8;
+    font-size: 0.98rem;
+    line-height: 1.55;
+    max-width: 52rem;
+}
+
+.patches-section {
+    /* Área principal. */
+    width: min(1100px, 92%);
+    margin: 0 auto 2rem;
+}
+
+/* Bloco grande de texto estilo “documento de patch” */
+.patch-notes-document {
+    /* Card do patch. */
+    background: var(--bg-surface);
+    border: 1px solid #2a2a2a;
+    border-left: 5px solid var(--gold-dark);
+    border-radius: 12px;
+    padding: clamp(1.5rem, 4vw, 2.75rem) clamp(1.25rem, 4vw, 2.75rem);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.patch-notes-document:hover {
+    border-color: #3a3a3a;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+}
+
+.patch-notes-header {
+    /* Cabeçalho do patch. */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #2c2c2c;
+}
+
+.patch-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 0.45rem 0;
+}
+
+.patch-version {
+    color: var(--gold-light);
+    font-size: clamp(1rem, 1.65vw + 0.45rem, 1.42rem);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    margin: 0 0 0.5rem 0;
+    max-width: 100%;
+    white-space: nowrap;
+}
+
+.patch-meta {
+    color: #a5a5a5;
+    font-size: 0.88rem;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.patch-meta strong {
+    color: #d8d8d8;
+}
+
+.patch-meta time {
+    color: #c0c0c0;
+}
+
+.patch-notes-body {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #ddd;
+}
+
+.patch-lead {
+    margin-bottom: 1.5rem;
+    color: #e4e4e4;
+    font-size: 1.08rem;
+}
+
+.patch-notes-body h3 {
+    color: var(--gold-light);
+    font-size: 1.15rem;
+    margin: 1.75rem 0 0.65rem;
+    padding-top: 0.35rem;
+    border-top: 1px solid #2a2a2a;
+}
+
+.patch-notes-body h3:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+}
+
+.patch-notes-body h4 {
+    color: var(--gold);
+    font-size: 1.02rem;
+    font-weight: 700;
+    margin: 1.5rem 0 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed #333;
+}
+
+.patch-street-intro {
+    margin: 0.75rem 0 1rem;
+    color: #cfcfcf;
+    line-height: 1.65;
+}
+
+.patch-notes-body ul {
+    margin: 0 0 0.25rem 0;
+    padding-left: 1.35rem;
+}
+
+.patch-notes-body li {
+    margin-bottom: 0.5rem;
+}
+
+.patch-notes-body li::marker {
+    color: var(--gold-dark);
+}
+
+.patch-notes-body strong {
+    color: #f0e6d2;
+}
+
+.patches-page .steam-cta {
+    /* Área do botão do Steam. */
+    width: min(1100px, 92%);
+    margin: 2rem auto;
+}
+
+@media (max-width: 600px) {
+    .patch-notes-body {
+        font-size: 1rem;
+    }
+
+    .patch-version {
+        white-space: normal;
+        font-size: clamp(0.92rem, 3.8vw, 1.2rem);
+    }
+}

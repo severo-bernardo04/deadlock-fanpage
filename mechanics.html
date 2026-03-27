@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mechanics — Deadlock Site</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="mechanics.css">
+</head>
+<body class="mechanics-page">
+
+<header>
+  <div>
+    <img src="DeadlockLogo.png" alt="Deadlock">
+    <h1>Deadlock</h1>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Patches.html">Patches</a></li>
+      <li><a href="characters.html">Characters</a></li>
+      <li><a href="mechanics.html" aria-current="page">Mechanics</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="mechanics-main">
+  <div class="mechanics-hero">
+    <h2 class="mechanics-title">Mechanics</h2>
+    <p class="mechanics-lead">
+      Quick explanations of key gameplay systems. Click a mechanic to view details.
+    </p>
+  </div>
+
+  <div class="mechanics-layout">
+    <aside class="mechanics-nav" aria-label="Mechanics menu">
+      <div class="mechanics-nav-top">
+        <p class="mechanics-nav-label">Select a mechanic</p>
+      </div>
+      <div id="mechanics-nav" class="mechanics-nav-list" role="list"></div>
+    </aside>
+
+    <section class="mechanics-detail" aria-live="polite">
+      <div class="mechanics-detail-card">
+        <p class="mechanics-detail-eyebrow" id="mechanics-detail-eyebrow"></p>
+        <h3 class="mechanics-detail-title" id="mechanics-detail-title"></h3>
+        <p class="mechanics-detail-description" id="mechanics-detail-description"></p>
+
+        <h4 class="mechanics-detail-subtitle">Key points</h4>
+        <ul class="mechanics-detail-bullets" id="mechanics-detail-bullets"></ul>
+
+        <div class="mechanics-video-dock" id="mechanics-video-dock">
+          <h4 class="mechanics-video-title">Example video</h4>
+          <div class="mechanics-video-shell">
+            <div class="mechanics-video-placeholder" id="mechanics-video-placeholder" hidden>
+              Add your local clip file in <code>mechanics.js</code> (property <code>clipFile</code>).
+            </div>
+            <video
+              id="mechanics-detail-video"
+              class="mechanics-detail-video"
+              controls
+              muted
+              playsinline
+              hidden></video>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-brand">
+      <h3>Deadlock Fan Site</h3>
+      <p>Created by: Bernardo Acosta Severo</p>
+    </div>
+
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="Patches.html">Patches</a>
+      <a href="characters.html">Characters</a>
+    <a href="mechanics.html">Mechanics</a>
+    </div>
+
+    <div class="footer-contact">
+      <p>Web development study project.</p>
+      <p>Content inspired by the Deadlock universe.</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 Deadlock Fan Site. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="mechanics.js" defer></script>
+</body>
+</html>
